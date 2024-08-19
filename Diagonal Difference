@@ -1,0 +1,22 @@
+import os
+import sys
+
+def diagonalDifference(arr):
+    n = len(arr)
+    primary_diagonal_sum = 0
+    secondary_diagonal_sum = 0
+
+    for i in range(n):
+        primary_diagonal_sum += arr[i][i]
+        secondary_diagonal_sum += arr[i][n - i - 1]
+
+    difference = abs(primary_diagonal_sum - secondary_diagonal_sum)
+    return difference
+
+if __name__ == '__main__':
+    output_path = os.getenv('OUTPUT_PATH', 'output.txt')
+    with open(output_path, 'w') as fptr:
+        n = int(input().strip())
+        arr = [list(map(int, input().rstrip().split())) for _ in range(n)]
+        result = diagonalDifference(arr)
+        fptr.write(str(result) + '\n')
